@@ -3,111 +3,26 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{
-      flex: 1,
-      backgroundColor: "#fff",
-      alignItems: 'center',
-      justifyContent: 'center',}}>
-        <TouchableOpacity style={styles.blueButton} onPress={() => navigation.navigate('Color', {bckColor: styles.blueButton.backgroundColor,})}>
-          <Text style = {styles.text}> Press Here </Text>
-        </TouchableOpacity>
-        <TouchableOpacity  style={styles.redButton} onPress={() => navigation.navigate('Color', {bckColor: styles.redButton.backgroundColor,})}>
-          <Text style = {styles.text}> Press Here </Text>
-        </TouchableOpacity>
-        <TouchableOpacity  style={styles.yellowButton} onPress={() => navigation.navigate('Color', {bckColor: styles.yellowButton.backgroundColor,})}>
-          <Text style = {styles.text}> Press Here </Text>
-        </TouchableOpacity>
-      </View>
-  );
-}
+// Importing all the screens
+import HomeScreen from "./assets/screens/HomeScreen.js";
+import ColorScreen from "./assets/screens/ColorScreen.js";
+import NameScreen from "./assets/screens/NameScreen.js";
+import AgeScreen from "./assets/screens/AgeScreen.js";
+import FinishScreen from './assets/screens/FinishScreen.js';
 
-function ColorScreen({ route, navigation })
-{
-  const {bckColor} = route.params;
-
-  return(
-    <View style={{ 
-      flex: 1, 
-      alignItems: 'center', 
-      justifyContent: 'center', 
-      backgroundColor: bckColor}}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text style = {styles.text}> Go Back </Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
-
-/*
-function BlueScreen({ navigation })
-{
-  return(
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:styles.blueButton.backgroundColor}}>
-      <TouchableOpacity style = {styles.blueButton}  onPress={() => navigation.goBack()}>
-        <Text style = {styles.text}> Go Back </Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
-
-function RedScreen({ navigation })
-{
-  return(
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:styles.redButton.backgroundColor}}>
-    <TouchableOpacity style = {styles.redButton}  onPress={() => navigation.goBack()}>
-      <Text style = {styles.text}> Go Back </Text>
-    </TouchableOpacity>
-  </View>
-  );
-}
-
-function YellowScreen({ navigation })
-{
-  return(
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:styles.yellowButton.backgroundColor}}>
-    <TouchableOpacity style = {styles.yellowButton} onPress={() => navigation.goBack()}>
-      <Text style = {styles.text}> Go Back </Text>
-    </TouchableOpacity>
-  </View>
-  );
-}*/
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-    <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false, animationEnabled: false,}}>
-      <Stack.Screen name="Home" component={HomeScreen} options={{title: "  ",}}/>
-      <Stack.Screen name="Color" component={ColorScreen} options={{title: "  ",}}/>
+    <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Home" component={HomeScreen}/>
+      <Stack.Screen name="Color" component={ColorScreen}/>
+      <Stack.Screen name="Name" component={NameScreen}/>
+      <Stack.Screen name="Age" component={AgeScreen}/>
+      <Stack.Screen name="Finish" component={FinishScreen}/>
     </Stack.Navigator>
   </NavigationContainer>
   );
 }
-
-
-const styles = StyleSheet.create({
-  blueButton: {
-    backgroundColor: "#a0ccf2",
-    padding: 20,
-    margin:10,
-    borderRadius: 10,
-  },
-  redButton: {
-    backgroundColor: "#ed928c",
-    padding: 20,
-    margin:10,
-    borderRadius: 10,
-  },
-  yellowButton: {
-    backgroundColor: "#edd69f",
-    padding: 20,
-    margin:10,
-    borderRadius: 10,
-  },
-  text:{
-    fontSize: 30,
-  }
-});
